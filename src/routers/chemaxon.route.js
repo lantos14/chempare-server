@@ -1,29 +1,31 @@
 import express from 'express';
 import getImageData from '../api/getImageData';
-import getStructureData from '../api/getStructureData';
+// import getStructureData from '../api/getStructureData';
 
 const chemAxon = express.Router();
 
 chemAxon
   .route('/chemaxon')
 
-  .get(async (req, res, next) => {
-    const name = req.query.compound;
+  .post(async (req, res, next) => {
+    console.log('req: ', req.body);
+    const name = req.body.name;
     const imageData = await getImageData({
       'structure': name,
       'format': 'SVG',
     });
 
-    const structureData = await getStructureData({
-      'searchType': 'SUBSTRUCTURE',
-      'query': 'aspirin',
-      'target': 'aspirin',
-    });
+    // const structureData = await getStructureData({
+    //   'searchType': 'SUBSTRUCTURE',
+    //   'query': 'aspirin',
+    //   'target': 'aspirin',
+    // });
+    console.log('imageData: ', imageData);
 
-    return res.json({
+    return res.json(
       imageData,
-      structureData,
-    });
+      // structureData,
+    );
   })
 
 module.exports = chemAxon;
