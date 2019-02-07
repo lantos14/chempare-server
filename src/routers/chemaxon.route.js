@@ -20,7 +20,6 @@ chemAxon
     //   'query': 'aspirin',
     //   'target': 'aspirin',
     // });
-    console.log('imageData: ', imageData);
 
     return res.json(
       imageData,
