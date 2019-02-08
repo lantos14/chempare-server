@@ -10,7 +10,14 @@ const getImageData = async (reqBody) => {
     body: JSON.stringify(reqBody)
   })
   .then(function (response) {
+    if (response.status === 400) {
+      throw new Error();
+    };
     return response.json(response);
+  })
+  .catch(function () {
+    console.log('error');
+    return;
   });
   return result;
 }

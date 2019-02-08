@@ -18,17 +18,27 @@ chemAxon
     // get images
     for (let i = 0; i < names.length; i++) {
       const compound = names[i];
-      const imageData = await getImageData({
-        'structure': compound,
-        'format': 'SVG',
-      });
-      result.compounds.push({
-        'compoundName': compound,
-        'rawImg': imageData.image,
-      });
-      
+      try {
+        const imageData = await getImageData({
+          'structure': compound,
+          'format': 'SVG',
+        });
+        result.compounds.push({
+          'compoundName': compound,
+          'rawImg': imageData.image,
+        });
+
+      } catch (error) {
+        res.status(400);
+        res.json({
+          'status': 400,
+          'msg': 'compound does not exist'
+        });
+        return;
+      }
+
     }
-  
+
     // get comparison data
     if (names.length === 2) {
       const structureData = await getStructureData({
@@ -36,10 +46,11 @@ chemAxon
         'query': names[0],
         'target': names[1],
       });
-      console.log('structureData: ', structureData);
+      console.log('structureData.matching: ', structureData.matching);
+      console.log('structureData.matching: ', typeof structureData.matching);
       result.comparison = structureData.matching;
     }
-    
+
     return res.json(
       result
     );
