@@ -16,7 +16,7 @@ const getImageData = async (reqBody) => {
     return response.json(response);
   })
   .catch(function () {
-    console.log('error');
+    console.log('error: BAD REQUEST to API');
     return;
   });
   return result;
