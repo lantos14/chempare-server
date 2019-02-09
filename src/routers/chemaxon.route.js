@@ -23,6 +23,7 @@ chemAxon
           'structure': compound,
           'format': 'SVG',
         });
+        
         console.log('imageData result: ', imageData && `${compound}: success`);
 
         result.compounds.push({
