@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const { chemAxon } = require('./routers');
 require('dotenv').config()
 
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT;
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -8,7 +8,7 @@ chemAxon
   .route('/chemaxon')
 
   .post(async (req, res, next) => {
-    console.log('req: ', req.body);
+    console.log(`request arrived at ${new Date()}. Url: ${req.originalUrl}, Method: ${req.method}, Body: `, req.body);
     const names = req.body.names;
     const result = {
       'compounds': [],
@@ -23,6 +23,8 @@ chemAxon
           'structure': compound,
           'format': 'SVG',
         });
+        console.log('imageData result: ', imageData && `${compound}: success`);
+
         result.compounds.push({
           'compoundName': compound,
           'rawImg': imageData.image,
@@ -46,8 +48,7 @@ chemAxon
         'query': names[0],
         'target': names[1],
       });
-      console.log('structureData.matching: ', structureData.matching);
-      console.log('structureData.matching: ', typeof structureData.matching);
+      console.log('structureData result: ', structureData);
       result.comparison = structureData.matching;
     }
 
