@@ -5,9 +5,10 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 
 const { chemAxon } = require('./routers');
+require('dotenv').config()
+
 const PORT = process.env.PORT || 3030;
 
-require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
