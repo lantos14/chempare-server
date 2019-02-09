@@ -13,3 +13,5 @@
 4. `npm run dev`
 5. Don't forget to set up the [chemPare webapp](https://github.com/lantos14/chempare-front) as well: 
 5. Enjoy :smile:
+
+Also, you can type `npm run build` to make a production build into the `build` folder.
