@@ -9,6 +9,7 @@ chemAxon
 
   .post(async (req, res, next) => {
     console.log(`request arrived at ${new Date()}. Url: ${req.originalUrl}, Method: ${req.method}, Body: `, req.body);
+
     const names = req.body.names;
     const result = {
       'compounds': [],
@@ -30,7 +31,6 @@ chemAxon
           'compoundName': compound,
           'rawImg': imageData.image,
         });
-
       } catch (error) {
         res.status(400);
         res.json({
@@ -39,7 +39,6 @@ chemAxon
         });
         return;
       }
-
     }
 
     // get comparison data
@@ -49,12 +48,13 @@ chemAxon
         'query': names[0],
         'target': names[1],
       });
+
       console.log('structureData result: ', structureData);
       result.comparison = structureData.matching;
     }
 
     return res.json(
-      result
+      result,
     );
   })
 
